@@ -17,6 +17,7 @@ export default {
   },
   methods: {
     async onSubmitted(postData) {
+      // firebaseのCORSに引っかかって動かないが、コードは合ってるはず。
       const result = await axios.put(
         `https://nuxt-blog-b1730-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${this.$route.params.postid}.
       json`,
