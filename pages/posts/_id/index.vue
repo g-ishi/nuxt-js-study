@@ -1,12 +1,14 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">title of post</h1>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div class="post-detail">last update on XXX</div>
-        <div class="post-detail">author by XXX</div>
+        <div class="post-detail">
+          last update on {{ loadedPost.updatedDate }}
+        </div>
+        <div class="post-detail">author by {{ loadedPost.author }}</div>
       </div>
-      <p class="post-content">content of post</p>
+      <p class="post-content">{{ loadedPost.content }}</p>
     </section>
     <section class="post-feedback">
       <p>
@@ -17,6 +19,32 @@
     </section>
   </div>
 </template>
+
+<script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      loadedPost: {},
+    };
+  },
+  async asyncData(context) {
+    try {
+      const res = await axios.get(
+        `https://nuxt-blog-b1730-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${context.params.id}.json`
+      );
+      console.log(res);
+
+      return {
+        loadedPost: res.data,
+      };
+    } catch (error) {
+      context.error(error);
+    }
+  },
+};
+</script>
 
 <style scoped>
 .single-post-page {
