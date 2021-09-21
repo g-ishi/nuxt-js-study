@@ -116,14 +116,23 @@ const createStore = () => {
           token = localStorage.getItem("token");
           expirationDate = localStorage.getItem("tokenExpiration");
           // トークンが存在して、有効期限内である場合は再度Storeにデータを保存する
-          if (new Date() > Number(expirationDate) || !token) {
-            return;
-          }
-
         }
-
+        if (new Date() > Number(expirationDate) || !token) {
+          vueContext.dispatch("logout");
+          return;
+        }
         vueContext.commit("setToken", token);
         vueContext.dispatch("setLogoutTimer", Number(expirationDate) - new Date().getTime());
+      },
+
+      logout(vueContext) {
+        vueContext.commit("clearToken");
+        Cookie.remove("jwt");
+        Cookie.remove("expirationDate");
+        if (process.client) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("tokenExpiration");
+        }
       },
 
       setLogoutTimer(vueContext, duration) {

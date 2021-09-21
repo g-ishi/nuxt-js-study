@@ -4,6 +4,7 @@
       <AppButton @click="$router.push('/admin/new-post')"
         >Create Post</AppButton
       >
+      <AppButton @click="logout">Logout</AppButton>
     </section>
     <section class="existing-post">
       <h1>Existing Posts</h1>
@@ -22,6 +23,12 @@ export default {
   components: {
     PostList,
     AppButton,
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/admin/auth/");
+    }
   },
   computed: {
     loadedPosts() {
