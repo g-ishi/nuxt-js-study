@@ -12,6 +12,7 @@ import PostPreview from "~/components/Posts/PostPreview";
 import PostList from "~/components/Posts/PostList";
 
 export default {
+  middleware: "log",
   components: {
     PostPreview,
     PostList,
@@ -19,8 +20,8 @@ export default {
   computed: {
     loadedPosts() {
       return this.$store.getters.loadedPosts;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -34,9 +34,21 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
+  axios: {
+    debug: true,
+    baseURL: "https://nuxt-blog-b1730-default-rtdb.asia-southeast1.firebasedatabase.app"
+    
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || "https://nuxt-blog-b1730-default-rtdb.asia-southeast1.firebasedatabase.app",
+    fbAPIKey: "AIzaSyA9mn2_34evorcwd9f-9Zt5mQ1WVWhi84E",
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
 }
