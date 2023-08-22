@@ -1,3 +1,5 @@
+import bodyParser from "body-parser";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -39,7 +41,6 @@ export default {
   axios: {
     debug: true,
     baseURL: "https://nuxt-blog-b1730-default-rtdb.asia-southeast1.firebasedatabase.app"
-    
   },
 
   env: {
@@ -51,4 +52,8 @@ export default {
   build: {
   },
 
+  serverMiddleware: [
+    bodyParser.json(),
+    "~/api",
+  ]
 }

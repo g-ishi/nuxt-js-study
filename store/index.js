@@ -84,6 +84,9 @@ const createStore = () => {
         } catch (error) {
           console.log(error);
         }
+
+        const testResult = await this.$axios.$post("http://localhost:3000/api/track-data", {data: "testtest"});
+        console.log("call api!!", testResult);
       },
 
       initAuth(vueContext, req) {
